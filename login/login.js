@@ -20,9 +20,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 const result = await response.json();
-                alert(result.message);
-                userid = result.user.user_id
-                window.location.replace("../home/home.html?user_id="+userid);
+                
+
+
+                const urlParams = new URLSearchParams(window.location.search);
+                let sellerId = urlParams.get('seller_id');
+                userId = result.user.user_id
+                let staffId = urlParams.get('staff_id');
+            
+                if (staffId === 'no') {
+                    
+
+                    fetch('http://localhost:9000/loginStaff', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ userId: userId }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        window.location.replace("../staff/staff.html?staff_id="+data.staff_id);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                }
+                else if (sellerId === 'no') {
+                    
+
+                    fetch('http://localhost:9000/addSeller/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ userId: userId }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        window.location.replace("../seller/seller.html?seller_id="+data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                }
+                else{
+
+                    alert(result.message);
+                    window.location.replace("../home.html?user_id="+userId);
+                }
+                
             } else {
                 const error = await response.json();
                 alert(`Error: ${error.message}`);
