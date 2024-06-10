@@ -31,7 +31,7 @@ function populateCards(sellerId){
             <div class="product-info">
                 <h2>${e.product_name}</h2>
                 <p>${e.description}</p>
-                <p>$ ${e.price}</p>
+                <p>₩ ${e.price}</p>
                 <input type="hidden" value="${e.product_id}">
                 <button>sold : ${element.sales_count}</button>
             </div>

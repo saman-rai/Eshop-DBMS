@@ -33,7 +33,7 @@ async function getProducts() {
         <div class="product-info">
             <h2>${e.product_name}</h2>
             <p>${e.description}</p>
-            <p>$ ${e.price}</p>
+            <p>₩ ${e.price}</p>
             <input type="hidden" value="${e.product_id}">
             <button onclick="buyProduct(${e.product_id}, ${e.seller_id})">Buy</button>
         </div>

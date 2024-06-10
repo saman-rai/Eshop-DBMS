@@ -36,7 +36,7 @@ async function getProducts() {
         <div class="product-info">
             <h2>${e.product_name}</h2>
             <p>${e.description}</p>
-            <p>$ ${e.price}</p>
+            <p>₩ ${e.price}</p>
             <input type="hidden" value="${e.product_id}">
             <div>
                 <button onclick="updateProduct(${e.product_id})">Update</button>
